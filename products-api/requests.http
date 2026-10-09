@@ -1,0 +1,64 @@
+@baseUrl = http://localhost:3000/api/v1/products
+
+### 1. Get all active products
+GET {{baseUrl}}/getAll
+
+### 1. Get active product by id
+GET {{baseUrl}}/getById/1
+
+### 2. Create product (expects 201)
+POST {{baseUrl}}/create
+Content-Type: application/json
+
+{
+  "name": "USB-C Hub",
+  "price": 34.99,
+  "stock": 15,
+  "description": "7-in-1 USB-C hub",
+  "brand": "PortMax",
+  "img": "https://example.com/hub.jpg"
+}
+
+### 3. Full update (use the id returned by create)
+PUT {{baseUrl}}/update/4
+Content-Type: application/json
+
+{
+  "name": "USB-C Hub Pro",
+  "price": 39.99,
+  "stock": 20,
+  "description": "9-in-1 USB-C hub",
+  "brand": "PortMax",
+  "img": "https://example.com/hub-pro.jpg"
+}
+
+### 3. Change price only
+PATCH {{baseUrl}}/change-price/4
+Content-Type: application/json
+
+{
+  "price": 44.50
+}
+
+### 4. Logical delete
+DELETE {{baseUrl}}/delete/4
+
+### 5. Verify it no longer appears (getAll and getById -> 404)
+GET {{baseUrl}}/getAll
+
+###
+GET {{baseUrl}}/getById/4
+
+### 6a. Non-existent id (expects 404)
+GET {{baseUrl}}/getById/9999
+
+### 6b. Invalid data (expects 400)
+POST {{baseUrl}}/create
+Content-Type: application/json
+
+{
+  "name": "",
+  "price": -5,
+  "stock": 1,
+  "description": "bad product"
+}
