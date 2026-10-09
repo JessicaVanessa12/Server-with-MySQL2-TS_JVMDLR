@@ -20,7 +20,7 @@ Content-Type: application/json
 }
 
 ### 3. Full update (use the id returned by create)
-PUT {{baseUrl}}/update/4
+PUT {{baseUrl}}/update/3
 Content-Type: application/json
 
 {
@@ -33,7 +33,7 @@ Content-Type: application/json
 }
 
 ### 3. Change price only
-PATCH {{baseUrl}}/change-price/4
+PATCH {{baseUrl}}/change-price/3
 Content-Type: application/json
 
 {
@@ -41,13 +41,13 @@ Content-Type: application/json
 }
 
 ### 4. Logical delete
-DELETE {{baseUrl}}/delete/4
+DELETE {{baseUrl}}/delete/3
 
 ### 5. Verify it no longer appears (getAll and getById -> 404)
 GET {{baseUrl}}/getAll
 
 ###
-GET {{baseUrl}}/getById/4
+GET {{baseUrl}}/getById/3
 
 ### 6a. Non-existent id (expects 404)
 GET {{baseUrl}}/getById/9999
